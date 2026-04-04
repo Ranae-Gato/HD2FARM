@@ -1,0 +1,131 @@
+if syntaxcheck then return end
+
+--activateProtection()
+--enableDRM()
+
+Version = "4.0.0"
+local vNum = Version
+
+function cycleFullCompact( sender, force )
+  local state = not( compactmenuitem.Caption == 'Compact View Mode' )
+    if force ~= nil then
+       state = force
+    end
+  compactmenuitem.Caption = state and 'Compact View Mode' or 'Full View Mode'
+  getMainForm().Splitter1.Visible = state
+  getMainForm().Panel4.Visible = state
+  getMainForm().Panel5.Visible = state
+end
+
+function addCompactMenu()
+  if compactmenualreadyexists then return end
+  local parent = getMainForm().Menu.Items
+  compactmenuitem = createMenuItem( parent )
+  parent.add( compactmenuitem )
+  compactmenuitem.Caption = 'Compact View Mode'
+  compactmenuitem.OnClick = cycleFullCompact
+  compactmenualreadyexists = 'yes'
+end
+
+addCompactMenu()
+cycleFullCompact( nil, true )
+
+function pushCred( sender, force )
+local state = not( credmenuitem.Caption == 'Credits' )
+  if force ~= nil then
+    state = not force
+  end
+  credmenuitem.Caption = state and 'Credits' or 'Credits'
+  if force == nil then
+  local list = "Ω Experimental Division Ω\nRei & Zodiac\n-------------------\nSpecial thanks to:\nDemheadsh0tz\ngir489\nZoDDeL\ncfemen\nKanna\nDestinate\nHavocBlitz\nIronS1ghts\nKael\nDrem Caponera\nand everyone else who supported us!\n-------------------"
+    showMessage("Credits", list)
+  end
+end
+
+function addCredButton()
+  if credmenualreadyexists then credmenuitem.Destroy() end
+  local parent = getMainForm().Menu.Items
+  credmenuitem = createMenuItem( parent )
+  parent.add( credmenuitem )
+  credmenuitem.Caption = 'Credits'
+  credmenuitem.OnClick = pushCred
+  credmenualreadyexists = 'yes'
+end
+
+addCredButton()
+pushCred( nil, true )
+
+MainForm.Caption="Experimental Division's Technology"
+
+local als1=MainForm.Panel4
+if ttLbl then ttLbl.Destroy() end
+  ttLbl=createLabel(als1)
+  ttLbl.AutoSize=false
+  ttLbl.Align=alClient
+  ttLbl.Alignment="taCenter"
+  ttLbl.Height=als1.Height + 15
+  ttLbl.Caption="Secret Version "..vNum
+  ttLbl.OptimalFill=false
+  ttLbl.Font.Size=10
+  ttLbl.Font.Style="fsBold"
+  ttLbl.Font.Color = 0x0044D7FF
+
+openProcess("helldivers2.exe")
+
+local bypassASM =[[
+aobscanmodule(bypassP1,$process,48 83 EC 28 8D 81 17 ? ? ? 83) //Unique
+aobscanmodule(bypassP2,$process,E8 ? ? ? ? 3D ? ? ? ? 0F 95 C0 48 83 C4 ? C3 CC CC CC CC CC 48 83) //Unique
+aobscanmodule(bypassP3,$process,E8 ? ? ? ? 3D ? ? ? ? 0F 95 C0 48 83 C4 ? C3 CC CC CC CC CC CC CC 48 89) //Unique
+aobscanmodule(bypassP4,$process,E8 ? ? ? ? 8B D8 3D) //Unique
+aobscanmodule(bypassP5,$process,E8 ? ? ? ? 3D ? ? ? ? 75 ? E8) //Unique
+aobscanmodule(bypassP6,$process,44 89 2D ? ? ? ? E8 ? ? ? ? 3D 55 07 00 00) //Unique
+aobscanmodule(bypassP7,$process,E8 ? ? ? ? 41 0F B6 ? ? ? ? ? 49 8B) //Unique
+aobscanmodule(bypassP8,$process,E8 ? ? ? ? 85 C0 74 ? 48 8D ? ? ? ? ? 48 83 C4 ? C3) //Unique
+registersymbol(bypassP1 bypassP2 bypassP3 bypassP4 bypassP5 bypassP6 bypassP7 bypassP8)
+
+bypassP1:
+  db B8 01 00 00 00 C3 CC CC CC CC
+
+bypassP2:
+  mov eax,755
+
+bypassP3:
+  mov eax,755
+
+bypassP4:
+  mov eax,755
+
+bypassP5:
+  mov eax,755
+
+bypassP6+7:
+  mov eax,755
+
+bypassP7:
+  mov eax,755
+
+bypassP8:
+  or eax,1
+  nop 2
+]]
+
+if autoAssemble(bypassASM) then
+  sleep(1000)
+  os.execute('taskkill /F /IM "GameMon.des" & taskkill /F /IM "GameMon64.des"')
+  sleep(2000)
+  openProcess("helldivers2.exe")
+
+  autoAssemble([[
+  aobscanmodule(noenginelog,$process,48 89 4C 24 ? 48 89 54 24 ? 4C 89 44 24 ? 4C 89 4C 24 ? 53 56 57 48 83 EC ? 65 48 8B 04 25) //Unique
+
+  registersymbol(noenginelog)
+
+  noenginelog:
+  db C3 CC CC CC CC
+  ]])
+
+  beep()
+else
+  openProcess("helldivers2.exe")
+end
+
