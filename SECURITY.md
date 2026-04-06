@@ -5,7 +5,7 @@ If you have a feeling some part is fishy please contact me.
 
 ## Supported Versions
 
-I only support the latest Release.
+I only support the latest RELEASE OR PRE-RELEASE.
 
 ## Reporting a Vulnerability
 
