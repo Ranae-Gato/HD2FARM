@@ -54,3 +54,19 @@ jobs:
       uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: ${{ steps.ossar.outputs.sarifFile }}
+
+            - name: Install Microsoft Security DevOps CLI
+      run: dotnet tool install --global Microsoft.Security.DevOps.CLI --version 0.215.0
+      shell: pwsh
+
+    - name: Run Guardian (OSSAR) with explicit tool
+      run: |
+        $env:PATH += ";" + "$env:USERPROFILE\\.dotnet\\tools"
+        # Example: run semgrep and output SARIF to ossar-results.sarif
+        guardian --tool semgrep --format sarif --output ossar-results.sarif
+      shell: pwsh
+
+    - name: Upload OSSAR results
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ossar-results.sarif
