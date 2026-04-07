@@ -28,6 +28,8 @@ Make sure you have helldivers in windowed mode. Put the .ct on your desktop.
 6. The Cheat Table will pop up, now select the helldivers2 process via clicking on the icon below "File" in the top left corner.
 7. Use the CT by clicking on the respective tick boxes. You can activate most stuff whenever.
 
-Thats it, you can now go through the options and test out stuff.
+You can verify if it works with ticking the Speedhack under Universal Features.
+
+Thats it, you can now go through the options and test out stuff. Have fun and go fuck yourself AH.
 
 If you find any issues or non working option post them into Issues.
