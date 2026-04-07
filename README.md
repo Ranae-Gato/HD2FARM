@@ -6,7 +6,8 @@ How to operate this dandy piece of bytes?
 
 Prerequisites:
 
-- Cheat Engine [ https://www.cheatengine.org/ ]
+- Cheat Engine 
+[ https://www.cheatengine.org/ ]
 - The Cheat Table provided
 - Helldivers in windowed mode
 - Reading comprehension
