@@ -24,7 +24,7 @@ Make sure you have helldivers in windowed mode. Put the .ct on your desktop.
    
    I will post the lua code for manual verification. You can also check in cheat engine by pressing CTRL + ALT + L.
 
-5. Wait 5 - 10 seconds for the bypass to do its thing (closing some game guard processes)
+5. Wait 5 - 10 seconds for the bypass to do its thing (like closing some game guard processes etc)
 6. The Cheat Table will pop up, now select the helldivers2 process via clicking on the icon below "File" in the top left corner.
 7. Use the CT by clicking on the respective tick boxes. You can activate most stuff whenever.
 
