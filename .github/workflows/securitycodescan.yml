@@ -1,10 +1,18 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
 # This workflow integrates SecurityCodeScan with GitHub's Code Scanning feature
+# SecurityCodeScan is a vulnerability patterns detector for C# and VB.NET
+
 name: SecurityCodeScan
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
+    # The branches below must be a subset of the branches above
     branches: [ "main" ]
   schedule:
     - cron: '25 20 * * 5'
@@ -20,39 +28,32 @@ jobs:
       - uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
       - uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Detect .NET projects
-        id: detect
-        shell: pwsh
-        run: |
-          $files = git ls-files '*.sln' '*.csproj'
-          if ($files) {
-            echo "has_proj=true" >> $env:GITHUB_OUTPUT
-          } else {
-            echo "has_proj=false" >> $env:GITHUB_OUTPUT
-          }
-
-      - name: (debug) Show repository layout
-        if: steps.detect.outputs.has_proj == 'false'
-        run: |
-          echo "No .sln/.csproj detected — listing repo files for debugging"
-          git ls-files | sed -n '1,200p'
-
       - name: Set up projects for analysis
-        if: steps.detect.outputs.has_proj == 'true'
         uses: security-code-scan/security-code-scan-add-action@f8ff4f2763ed6f229eded80b1f9af82ae7f32a0d
 
+      - name: Find solution or project
+        id: find-proj
+        shell: pwsh
+        run: |
+          $root = (Get-Location).Path
+          # Find first .sln or .csproj (adjust if you want to handle multiples)
+          $item = Get-ChildItem -Recurse -Include *.sln,*.csproj -File | Select-Object -First 1
+          if (-not $item) {
+            Write-Error 'No .sln or .csproj found in repository. Ensure you have a .NET project or adjust this workflow.'
+            exit 1
+          }
+          # Convert to repo-relative path and normalize to forward slashes
+          $rel = $item.FullName.Substring($root.Length+1).Replace('\','/')
+          echo "project=$rel" >> $env:GITHUB_OUTPUT
+
       - name: Restore dependencies
-        if: steps.detect.outputs.has_proj == 'true'
-        run: dotnet restore
+        run: dotnet restore "${{ steps.find-proj.outputs.project }}"
 
       - name: Build
-        if: steps.detect.outputs.has_proj == 'true'
-        run: dotnet build --no-restore
+        run: dotnet build "${{ steps.find-proj.outputs.project }}" --no-restore
 
       - name: Convert sarif for uploading to GitHub
-        if: steps.detect.outputs.has_proj == 'true'
         uses: security-code-scan/security-code-scan-results-action@cdb3d5e639054395e45bf401cba8688fcaf7a687
 
       - name: Upload sarif
-        if: steps.detect.outputs.has_proj == 'true'
         uses: github/codeql-action/upload-sarif@v3
