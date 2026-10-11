@@ -1,18 +1,18 @@
 HD2FARM README
 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
-BROKEN ON LATEST PATCH 
+BROKEN ON LATEST PATCH USE MERGE FROM HERE https://www.unknowncheats.me/forum/helldivers-2-a/774740-hd2-ed-merge-reforged-7-1-1-a.html
+BROKEN ON LATEST PATCH USE MERGE FROM HERE https://www.unknowncheats.me/forum/helldivers-2-a/774740-hd2-ed-merge-reforged-7-1-1-a.html
+
+BROKEN ON LATEST PATCH USE MERGE FROM HERE https://www.unknowncheats.me/forum/helldivers-2-a/774740-hd2-ed-merge-reforged-7-1-1-a.html
+BROKEN ON LATEST PATCH USE MERGE FROM HERE https://www.unknowncheats.me/forum/helldivers-2-a/774740-hd2-ed-merge-reforged-7-1-1-a.html
+
+BROKEN ON LATEST PATCH USE MERGE FROM HERE https://www.unknowncheats.me/forum/helldivers-2-a/774740-hd2-ed-merge-reforged-7-1-1-a.html
+BROKEN ON LATEST PATCH USE MERGE FROM HERE https://www.unknowncheats.me/forum/helldivers-2-a/774740-hd2-ed-merge-reforged-7-1-1-a.html
+
+BROKEN ON LATEST PATCH USE MERGE FROM HERE https://www.unknowncheats.me/forum/helldivers-2-a/774740-hd2-ed-merge-reforged-7-1-1-a.html
+BROKEN ON LATEST PATCH USE MERGE FROM HERE https://www.unknowncheats.me/forum/helldivers-2-a/774740-hd2-ed-merge-reforged-7-1-1-a.html
+
+
 
 YES I WILL UPDATE
 NO I DONT KNOW WHEN THAT WILL BE
